@@ -3,10 +3,10 @@
  {% block body %}
      <div class="jumbotron text-center">
          <h1>Agence lorem ipsum</h1>
-         <h2>hello je suis pages/home.html.twig</h2>
          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid consequuntur, delectus enim exercitationem fuga itaque molestias placeat rerum sed sunt temporibus velit vitae! Assumenda fuga natus nobis placeat reprehenderit?</p>
      </div>
      <div class="container">
+         <h3>les dernieres biens {{ properties|length }}</h3>
          <div class="row flex">
              {% for property in properties  %}
                  <div class="col-3">
