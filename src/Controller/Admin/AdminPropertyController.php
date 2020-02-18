@@ -4,6 +4,7 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Equipement;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
@@ -59,6 +60,8 @@ class AdminPropertyController extends AbstractController
      */
     public function edit(Property $property, Request $request)
     {
+//        $equipement = new Equipement();
+//        $property->addEquipement($equipement);
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title 'Gerer les equipements' %}
+ {% block body %}
+     <div class="container mt-4">
+         <h1>Gerer les equipements</h1>
+         {% for message in app.flashes('success') %}
+             <div class="alert alert-success">{{ message }}</div>
+         {% endfor %}
+
+         <table class="table table-striped">
+             <thead>
+             <tr>
+                 <th>nom</th>
+                 <th>Actions</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for equipement in equipements  %}
+                 <tr>
+                     <td>{{ equipement.name }}</td>
+                     <td>
+                         <a href="{{ path('admin.equipement.edit', {id: equipement.id}) }}" class="btn btn-secondary d-inline-block">Editer</a>
+
+                         <form method="post" action="{{ path('admin.equipement.delete', {id: equipement.id}) }}" class="d-inline-block" onsubmit="confirm('are you sure?')">
+                             <input type="hidden" name="_method" value="DELETE"/>
+                             <input type="hidden" name="_token" value="{{ csrf_token('delete'~equipement.id) }}">
+                             <button class="btn btn-danger">Supprimer</button>
+                         </form>
+                     </td>
+                 </tr>
+             {% endfor %}
+             </tbody>
+         </table>
+         <div class="text-right">
+
+             <a href="{{ path('admin.equipement.new') }}" class="btn btn-primary">Creer un nouvel equipement</a>
+         </div>
+     </div>
+ {% endblock %}
+

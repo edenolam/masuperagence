@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -93,9 +95,16 @@ class Property
      */
     private $created_at;
 
+//    entite proprietaire = inversedBy
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Equipement", inversedBy="properties")
+     */
+    private $equipements;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->equipements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,4 +282,33 @@ class Property
 
         return $this;
     }
+
+    /**
+     * @return Collection|Equipement[]
+     */
+    public function getEquipements(): Collection
+    {
+        return $this->equipements;
+    }
+
+    public function addEquipement(Equipement $equipement): self
+    {
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements[] = $equipement;
+            $equipement->addProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipement(Equipement $equipement): self
+    {
+        if ($this->equipements->contains($equipement)) {
+            $this->equipements->removeElement($equipement);
+            $equipement->removeProperty($this);
+        }
+
+        return $this;
+    }
+
 }

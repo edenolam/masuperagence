@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Equipement;
 use App\Entity\PropertySearch;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -27,6 +29,13 @@ class PropertySearchType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Surface minimal'
                 ]
+            ])
+            ->add('equipements', EntityType::class, [
+                'required' => false,
+                'label' => false,
+                'class' => Equipement::class,
+                'choice_label' => 'name',
+                'multiple' => true
             ])
         ;
     }
