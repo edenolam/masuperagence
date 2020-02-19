@@ -4,7 +4,6 @@
 namespace App\Controller\Admin;
 
 
-use App\Entity\Equipement;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;

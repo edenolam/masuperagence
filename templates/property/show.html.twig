@@ -4,10 +4,20 @@
      <div class="jumbotron">
          <div class="container">
              <div class="row">
-                 <div class="col-md-8"></div>
+                 <div class="col-md-8">
+                     {% if property.filename %}
+{#                         <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}"#}
+{#                              alt="card-img-top" class="w-100">#}
+                          <img src="{{vich_uploader_asset(property, 'imageFile')}}" alt="card-img-top" class="w-100">
+                     {% else %}
+{#                         <img src="{{ '/images/properties/old-farmhouse.png' | imagine_filter('medium') }}"#}
+{#                              alt="card-img-top" class="w-100">#}
+                          <img src="{{'/images/properties/old-farmhouse.jpg'}}" alt="card-img-top" class="w-100">
+                     {% endif %}
+                 </div>
                  <div class="col-md-4">
-                     <h1>{{property.title}}</h1>
-                     <h2>{{property.rooms}} pièces - {{ property.surface }} m2</h2>
+                     <h1>{{ property.title }}</h1>
+                     <h2>{{ property.rooms }} pièces - {{ property.surface }} m2</h2>
                      <div class="text-primary font-weight-bold">{{ property.formattedPrice }}€</div>
                      <a href="" class="btn btn-primary mt-4">contacter l'agence</a>
                  </div>
@@ -46,7 +56,12 @@
                  </table>
              </div>
              <div class="col-md-4">
-                 <h2>Specificite</h2>
+                 <h2>Spécificite</h2>
+                 <ul class="list-group">
+                     {% for equipement in property.equipements %}
+                         <li class="list-group-item">{{ equipement.name }}</li>
+                     {% endfor %}
+                 </ul>
              </div>
          </div>
          <nav class="nav nav-tabs"></nav>
