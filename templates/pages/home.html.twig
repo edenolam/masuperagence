@@ -2,15 +2,26 @@
 {% block title 'Agence lorem ipsum' %}
  {% block body %}
      <div class="jumbotron text-center">
-         <h1>Agence lorem ipsum</h1>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid consequuntur, delectus enim exercitationem fuga itaque molestias placeat rerum sed sunt temporibus velit vitae! Assumenda fuga natus nobis placeat reprehenderit?</p>
+         <h1>Agence immobiliere Edenolam</h1>
+         <p>Retrouver sur se site, nos annonces de ventes et locations proche du quartier d'affaires de la Défense et Paris ouest.
+             Nous vous accueillons avec plaisir pour découvrir vos projets de vente, d'achat et de gestion locative et vous faire béficier
+             de l'ensemble des solutions immobilières novatrices et
+             performantes proposées par le réseau Edenolam et ses 1200 agences en France.</p>
+         <p>{{ properties|length }} biens a vendre</p>
      </div>
      <div class="container">
-         <h3>les dernieres biens {{ properties|length }}</h3>
+         <h3>les derniers biens {{ properties|length }}</h3>
          <div class="row flex">
              {% for property in properties  %}
                  <div class="col-3">
                      <div class="card">
+                         {% if property.filename %}
+                             <img src="{{vich_uploader_asset(property, 'imageFile')}}" alt="card-img-top" class="w-100">
+                             {#        <img src="{{vich_uploader_asset(property, 'imageFile') | imagine_filter('thumb')}}" alt="card-img-top" class="w-100">#}
+                         {% else %}
+                             {#            <img src="{{'/images/properties/house.png' | imagine_filter('thumb')}}" alt="card-img-top" class="w-100">#}
+                             <img src="{{'/images/properties/old-farmhouse.jpg'}}" alt="card-img-top" class="w-100">
+                         {% endif %}
                          <div class="card-body">
                              <h5 class="card-title">
                                  <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>

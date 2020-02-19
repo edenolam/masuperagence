@@ -1,0 +1,33 @@
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <thead>
+
+    </thead>
+    <tbody>
+    <tr>
+        <td>nom du bien</td>
+        <td>
+            <a href="{{ url('property.show', {id: contact.property.id, slug: contact.property.slug}) }}">{{ contact.property.title }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>prenom</td>
+        <td>{{ contact.firstname }}</td>
+    </tr>
+    <tr>
+        <td>nom</td>
+        <td>{{ contact.lastname }}</td>
+    </tr>
+    <tr>
+        <td>telephone</td>
+        <td>{{ contact.phone }}</td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td>{{ contact.email }}</td>
+    </tr>
+    <tr>
+        <td>message</td>
+        <td>{{ contact.message | nl2br }}</td>
+    </tr>
+    </tbody>
+</table>
