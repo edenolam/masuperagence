@@ -28,23 +28,28 @@
                      <h1>{{ property.title }}</h1>
                      <h2>{{ property.rooms }} pièces - {{ property.surface }} m2</h2>
                      <div class="text-primary font-weight-bold">{{ property.formattedPrice }}€</div>
-                     <a href="" class="btn btn-primary mt-4">contacter l'agence</a>
-                     <div id="contactForm" class="mt-4">
-                         {{ form_start(form) }}
-                         <div class="row">
-                             <div class="col">{{ form_row(form.firstname) }}</div>
-                             <div class="col">{{ form_row(form.lastname) }}</div>
-                         </div>
-                         <div class="row">
-                             <div class="col">{{ form_row(form.phone) }}</div>
-                             <div class="col">{{ form_row(form.email) }}</div>
-                         </div>
-                         {{ form_rest(form) }}
-                         <div class="form-group">
-                             <button class="btn btn-primary">Envoyer</button>
-                         </div>
-                         {{ form_end(form) }}
-                     </div>
+
+              <div class="card">
+                  <div class="card-body">
+                      <h3 class="mt-4 card-title" id="contactButton">Contacter l'agence</h3>
+                      <div id="contactForm" class="mt-4">
+                          {{ form_start(form) }}
+                          <div class="row">
+                              <div class="col">{{ form_row(form.firstname) }}</div>
+                              <div class="col">{{ form_row(form.lastname) }}</div>
+                          </div>
+                          <div class="row">
+                              <div class="col">{{ form_row(form.phone) }}</div>
+                              <div class="col">{{ form_row(form.email) }}</div>
+                          </div>
+                          {{ form_rest(form) }}
+                          <div class="form-group">
+                              <button class="btn btn-primary">Envoyer</button>
+                          </div>
+                          {{ form_end(form) }}
+                      </div>
+                  </div>
+              </div>
                  </div>
              </div>
          </div>
@@ -92,4 +97,5 @@
          <nav class="nav nav-tabs"></nav>
      </div>
  {% endblock %}
-
+{% block javascripts %}
+{% endblock %}

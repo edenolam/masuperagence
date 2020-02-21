@@ -123,10 +123,22 @@ class Property
      */
     private $updated_at;
 
+    /**
+     * @var Picture|null
+     */
+    private $picture;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="property", orphanRemoval=true, cascade={"persist"})
+     */
+    private $pictures;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->equipements = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -333,6 +345,8 @@ class Property
         return $this;
     }
 
+
+
     /**
      * @return string|null
      */
@@ -383,5 +397,46 @@ class Property
 
         return $this;
     }
+
+    /**
+     * @return Collection|Equipement[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function getPicture(): ?Picture
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(Picture $picture): self
+    {
+        $this->picture = $picture;
+        return $this;
+    }
+
+    public function addPictures(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            $picture->setProperty($this);
+        }
+
+        return $this;
+    }
+
+
 
 }

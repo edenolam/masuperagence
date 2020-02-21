@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "cache/apcu-adapter": "^1.0",
         "cocur/slugify": "^4.0",
         "fzaninotto/faker": "^1.9",
         "knplabs/knp-paginator-bundle": "^5.1",

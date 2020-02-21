@@ -1,10 +1,11 @@
+
 <div class="card mb-4">
     {% if property.filename %}
         <img src="{{vich_uploader_asset(property, 'imageFile')}}" alt="card-img-top" class="w-100">
-{#        <img src="{{vich_uploader_asset(property, 'imageFile') | imagine_filter('thumb')}}" alt="card-img-top" class="w-100">#}
-        {% else %}
-{#            <img src="{{'/images/properties/house.png' | imagine_filter('thumb')}}" alt="card-img-top" class="w-100">#}
-            <img src="{{'/images/properties/old-farmhouse.jpg'}}" alt="card-img-top" class="w-100">
+        {#        <img src="{{vich_uploader_asset(property, 'imageFile') | imagine_filter('thumb')}}" alt="card-img-top" class="w-100">#}
+    {% else %}
+        {#            <img src="{{'/images/properties/house.png' | imagine_filter('thumb')}}" alt="card-img-top" class="w-100">#}
+        <img src="{{'/images/properties/old-farmhouse.jpg'}}" alt="card-img-top" class="w-100">
     {% endif %}
     <div class="card-body">
         <h5 class="card-title">
@@ -14,7 +15,7 @@
         </h5>
         <p class="card-text">{{ property.surface }} m2 - {{ property.city }}({{ property.postalCode }})</p>
         <div class="text-primary font-weight-bold">
-            {{ property.formattedPrice }}
+            {{ property.formattedPrice }} €
         </div>
     </div>
 </div>
